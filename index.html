@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>DASHBOARD | WAR CAP</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Major+Mono+Display&display=swap">
+  <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
+
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+
+  <style>
+    .typewriter h1 {
+      overflow: hidden;
+      /* Ensures the content is not revealed until the animation */
+      border-right: .15em solid #30CC9A;
+      /* The typwriter cursor */
+      white-space: nowrap;
+      /* Keeps the content on a single line */
+      margin: 0 auto;
+      /* Gives that scrolling effect as the typing happens */
+      letter-spacing: .15em;
+      /* Adjust as needed */
+      animation:
+        typing .5s steps(1090, end),
+        blink-caret 1s step-end infinite;
+      font-family: "Bungee Hairline", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* The typing effect */
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    /* The typewriter cursor effect */
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: #30CC9A;
+      }
+    }
+
+    .highcharts-figure,
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #ebebeb;
+      margin: 1em auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+  </style>  
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <ul></ul>
+      <ul>
+        <li><strong><img src="images/logo-main-white.svg" style="max-height: 60px;"></strong></li>
+      </ul>
+      <ul></ul>
+    </nav>
+    <div style="display: flex; justify-content: center; font-family: Major Mono Display, monospace;">
+      <div class="typewriter">
+        <h1>TO THE MOON.</h1>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+
+    <div class="grid">
+      <div style="height: 100%; width: 100%;" id="stock_main"></div>
+    </div>
+
+    <div class="grid" style="text-align: center;">
+      <article>
+        <strong>$XXX.XX<br></strong>
+        <small>Current Price</small>
+      </article>
+      <article>
+        <strong>$XXX.XX<br></strong>
+        <small>Target Price</small>
+      </article>
+      <article>
+        <strong>XX.XX%<br></strong>
+        <small>CAGR</small>
+      </article>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/annotations-advanced.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/full-screen.js"></script>
+    <script src="https://code.highcharts.com/modules/price-indicator.js"></script>
+    <script src="https://code.highcharts.com/modules/stock-tools.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+
+    <details>
+      <summary>Prognosis</summary>
+      <div class="grid">
+        <figure class="highcharts-figure" id="revenue_prognosis"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="net_income_prognosis"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="eps_prognosis"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="share_count_prognosis"></figure>
+      </div>
+      <div class="grid">
+        <table role="grid">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" style="text-align: center; font-weight: bolder;">Overperform</th>
+              <th scope="col" style="text-align: center; font-weight: bolder;">Guidance</th>
+              <th scope="col" style="text-align: center; font-weight: bolder;">Half-Guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="font-weight: bold;">Top &amp; Bottom Line</th>
+              <td style="text-align: center;">Rev. XX% &#8594; XX%<br>NM XX% &#8594; XX%<br>X.X% BB PA</td>
+              <td style="text-align: center;">Rev. XX% &#8594; XX%<br>NM XX% &#8594; XX%<br>X.X% BB PA</td>
+              <td style="text-align: center;">Rev. XX% &#8594; XX%<br>NM XX% &#8594; XX%<br>X.X% BB PA</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">%</th>
+              <td style="text-align: center;">XX%</td>
+              <td style="text-align: center;">XX%</td>
+              <td style="text-align: center;">XX%</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">2027e Revenue<br><small><i>(USD MM)</i></small></th>
+              <td style="text-align: center;">X,XXX.XX</td>
+              <td style="text-align: center;">X,XXX.XX</td>
+              <td style="text-align: center;">X,XXX.XX</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">2027e EPS<br><small><i>(USD)</i></small></th>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">2027e Price<br><small><i>(USD)</i></small></th>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">2027e Price<br><small><i>(USD)</i></small></th>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: bold;">2027e Price<br><small><i>(USD)</i></small></th>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+              <td style="text-align: center;">XXX.XX</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>    
+    <details>
+      <summary>Toplines</summary>
+      <div class="grid">
+        <figure class="highcharts-figure" id="revenue_and_earnings"></figure>
+      </div>
+      <div class="grid" style="text-align: center;">
+        <article><strong>XXX.XX USD</strong><br><small>Earnings Per Share (EPS)</small></article>
+        <article><strong>XX.XX %</strong><br><small>Gross Margin</small></article>
+        <article><strong>XX.XX %</strong><br><small>Net Margin</small></article>
+      </div>
+      <div class="grid">
+        <div class="grid">
+          <figure class="highcharts-figure" id="revenue-ttm"></figure>
+        </div>
+      </div>
+      <div class="grid">
+        <article><strong>XX.XX %</strong><br><small>Revenue, Year-over-Year (YoY)</small></article>
+        <article><strong>XX.XX %</strong><br><small>Revenue, 3-Year Growth Rate</small></article>
+      </div>
+      <div class="grid">
+        <div class="grid">
+          <figure class="highcharts-figure" id="net_income-ttm"></figure>
+        </div>
+      </div>
+      <div class="grid">
+        <article><strong>XX.XX %</strong><br><small>Sum of TTM Net Income Growth, YoY</small></article>
+        <article><strong>XX.XX %</strong><br><small>Sum of TTM Net Income Growth, 3Y CAGR</small></article>
+      </div>
+    </details>
+    <details>
+      <summary>Competition</summary>
+      <div class="grid">
+        <figure class="highcharts-figure" id="market_share"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="pe_vs_peers"></figure>
+        <figure class="highcharts-figure" id="ps_vs_peers"></figure>
+        <figure class="highcharts-figure" id="net_margin_vs_peers"></figure>
+      </div>
+    </details>
+    <details>
+      <summary>Forecasts</summary>
+      <div class="grid">
+        <figure class="highcharts-figure" id="revenue_and_earnings_forecast"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="revenue_by_segment"></figure>
+        <figure class="highcharts-figure" id="profit_by_segment"></figure>
+      </div>
+    </details>
+    <details>
+      <summary>Balance Sheet</summary>
+      <div class="grid">
+        <figure class="highcharts-figure" id="balance_sheet"></figure>
+      </div>
+      <div class="grid">
+        <figure class="highcharts-figure" id="balance_sheet_over_time"></figure>
+      </div>
+    </details>
+  </main>
+  <script src="scripts/sample.js"></script>
+  <script src="scripts/sample-stock.js"></script>
+
+</body>
+
+</html>

@@ -6,7 +6,7 @@ Highcharts.chart('market_share', {
         borderColor: '#fff',
         borderRadius: 6,
         borderWidth: 2,
-        styledMode: true,
+        styledMode: false,
         dataLabels: {
             style: {
                 textOutline: 'none'

@@ -10,8 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Major+Mono+Display&display=swap">
+  <link rel="stylesheet" href="css/pico.min.css">
+  <link rel="stylesheet" href="/css/themes/default.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Hairline">
   <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
 
   <script src="https://code.highcharts.com/stock/highstock.js"></script>
@@ -32,7 +33,7 @@
       letter-spacing: .15em;
       /* Adjust as needed */
       animation:
-        typing .5s steps(1090, end),
+        typing 1s steps(1000, end),
         blink-caret 1s step-end infinite;
       font-family: "Bungee Hairline", sans-serif;
       font-weight: 400;
@@ -105,17 +106,29 @@
 <body>
   <header class="container">
     <nav>
-      <ul></ul>
-      <ul>
+      <ul style="width: 25%;">
         <li><strong><img src="images/logo-main-white.svg" style="max-height: 60px;"></strong></li>
       </ul>
-      <ul></ul>
+      <ul>
+        <div style="justify-content: center; font-family: Major Mono Display, monospace;">
+          <div class="typewriter">
+            <h1>TO THE MOON.</h1>
+          </div>
+        </div>
+      </ul>
+      <ul style="width: 25%; justify-content: flex-end;">
+        <li>
+          <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox">Dropdown</summary>
+            <ul role="listbox">
+              <li><a>Action</a></li>
+              <li><a>Another action</a></li>
+              <li><a>Something else here</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
     </nav>
-    <div style="display: flex; justify-content: center; font-family: Major Mono Display, monospace;">
-      <div class="typewriter">
-        <h1>TO THE MOON.</h1>
-      </div>
-    </div>
   </header>
   <main class="container">
 
